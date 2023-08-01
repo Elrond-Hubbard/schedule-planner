@@ -16,7 +16,7 @@ $(document).ready(function () {
   // local storage.
   timeBlockEl.on('click', 'button', function () {
     const thisId = $(this).closest('.time-block').attr('id');
-    const thisInput = $(this).siblings('.description');
+    const thisInput = $(this).find('.description');
     localStorage.setItem(thisId, thisInput.val());
   })
 
@@ -25,7 +25,7 @@ $(document).ready(function () {
   // Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements.
   timeBlockEl.each(function() {
-    let hourId = $(this).attr('id');
+    hourId = $(this).attr('id');
     currentHour = dayjs().format('HH')
     if (hourId < currentHour) {
       $(this).removeClass('present future');
