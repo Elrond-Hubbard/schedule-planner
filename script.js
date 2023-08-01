@@ -1,9 +1,9 @@
- 
 
 
 
- timeBlockEl = $(".time-block");
- timeInputEl = timeBlockEl.children(".description");
+currentDayEl = $("#currentDay")
+timeBlockEl = $(".time-block");
+timeInputEl = timeBlockEl.children(".description");
 
 
 
@@ -18,7 +18,7 @@ $(document).ready(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  timeBlockEl.on('click', 'button', function() {
+  timeBlockEl.on('click', 'button', function () {
     console.log("click")
   })
   //
@@ -33,4 +33,9 @@ $(document).ready(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+  setInterval(displayClock, 10);
 });
+
+function displayClock() {
+  currentDayEl.text(dayjs());
+}
