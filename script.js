@@ -31,12 +31,17 @@ $(document).ready(function () {
     hourId = $(this).attr('id');
     currentHour = dayjs().format('HH')
     if (hourId < currentHour) {
-      console.log('we are in the past')
+      $(this).removeClass('present future');
+      $(this).addClass('past');
     }
     else if (hourId > currentHour) {
-      console.log('we are in the future')
+      $(this).removeClass('present past');
+      $(this).addClass('future');
     }
-    else {console.log('we are in the present')}
+    else {
+      $(this).removeClass('past future');
+      $(this).addClass('present');
+    }
   })
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
@@ -49,5 +54,3 @@ $(document).ready(function () {
   }
   setInterval(displayClock, 100);
 });
-
-console.log(localStorage.getItem('hour-9'))
