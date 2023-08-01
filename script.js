@@ -1,6 +1,5 @@
 
-const timeBlockEl = $(".time-block");
-const timeInputEl = timeBlockEl.children(".description");
+
 
 
 
@@ -9,7 +8,8 @@ const timeInputEl = timeBlockEl.children(".description");
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(document).ready(function () {
-
+  const timeBlockEl = $(".time-block");
+  const timeInputEl = timeBlockEl.children(".description");
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -27,7 +27,17 @@ $(document).ready(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-
+  timeBlockEl.each(function() {
+    hourId = $(this).attr('id');
+    currentHour = dayjs().format('HH')
+    if (hourId < currentHour) {
+      console.log('we are in the past')
+    }
+    else if (hourId > currentHour) {
+      console.log('we are in the future')
+    }
+    else {console.log('we are in the present')}
+  })
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
