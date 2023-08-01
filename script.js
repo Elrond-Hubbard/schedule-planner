@@ -1,9 +1,7 @@
 
-
-
-const currentDayEl = $("#currentDay")
 const timeBlockEl = $(".time-block");
 const timeInputEl = timeBlockEl.children(".description");
+
 
 
 
@@ -36,6 +34,7 @@ $(document).ready(function () {
 
   // TODO: Add code to display the current date in the header of the page.
   function displayClock() {
+    const currentDayEl = $("#currentDay")
     currentDayEl.text(dayjs().format('dddd - MMMM DD, YYYY - hh:mm:ss'));
   }
   setInterval(displayClock, 100);
