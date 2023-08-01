@@ -16,7 +16,7 @@ $(document).ready(function () {
   // local storage.
   timeBlockEl.on('click', 'button', function () {
     const thisId = $(this).closest('.time-block').attr('id');
-    const thisInput = $(this).find('.description');
+    const thisInput = $(this).siblings('.description');
     localStorage.setItem(thisId, thisInput.val());
   })
 
