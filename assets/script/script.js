@@ -8,20 +8,20 @@
 $(document).ready(function () {
 
   const timeBlockEl = $(".time-block");
-  const timeInputEl = timeBlockEl.children(".description");
 
-  // Schedule entries are saved to local storage using a 
-  // button. Each storage item uses the corresponding timeBlock's
-  // ID as the key, and its text as the value.
+  // Schedule entries are saved to local storage as
+  // a key-value pair. Each storage item uses the corresponding timeBlock's
+  // ID as the key and its corresponding text as the value.
   timeBlockEl.on('click', 'button', function () {
     const thisId = $(this).closest('.time-block').attr('id');
     const thisInput = $(this).siblings('.description');
     localStorage.setItem(thisId, thisInput.val());
   })
 
-  // The ID of each timeBlock is checked against the current hour.
+  // The ID of each timeBlock is checked against the current hour
   // and a new class is added to each element.
   timeBlockEl.each(function () {
+
     hourId = $(this).attr('id');
     currentHour = dayjs().format('HH')
     if (hourId < currentHour) {
@@ -36,6 +36,7 @@ $(document).ready(function () {
       $(this).removeClass('past future');
       $(this).addClass('present');
     }
+
     // The function gets any user input that was saved in localStorage
     // and sets the value of the corresponding textarea element.
     savedInput = localStorage.getItem(hourId);
