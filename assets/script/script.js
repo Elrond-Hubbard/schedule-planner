@@ -2,29 +2,26 @@
 
 ///// SCHEDULE PLANNER /////
 
-
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
+// The code is wrapped in a ready function to ensure it 
+// isn't ran until the browser has finished rendering all the elements
 // in the html.
 $(document).ready(function () {
 
   const timeBlockEl = $(".time-block");
   const timeInputEl = timeBlockEl.children(".description");
 
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage.
+  // Schedule entries are saved to local storage using a 
+  // button. Each storage item uses the corresponding timeBlock's
+  // ID as the key, and its text as the value.
   timeBlockEl.on('click', 'button', function () {
     const thisId = $(this).closest('.time-block').attr('id');
     const thisInput = $(this).siblings('.description');
     localStorage.setItem(thisId, thisInput.val());
   })
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour.
-  // Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements.
-  timeBlockEl.each(function() {
+  // The ID of each timeBlock is checked against the current hour.
+  // and a new class is added to each element.
+  timeBlockEl.each(function () {
     hourId = $(this).attr('id');
     currentHour = dayjs().format('HH')
     if (hourId < currentHour) {
@@ -39,14 +36,13 @@ $(document).ready(function () {
       $(this).removeClass('past future');
       $(this).addClass('present');
     }
+    // The function gets any user input that was saved in localStorage
+    // and sets the value of the corresponding textarea element.
     savedInput = localStorage.getItem(hourId);
     $(this).find('.description').val(savedInput);
   })
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements.
-
-  // TODO: Add code to display the current date in the header of the page.
+  // Day.js is used to format a realtime clock at the top of the screen.
   function displayClock() {
     const currentDayEl = $("#currentDay")
     currentDayEl.text(dayjs().format('dddd - MMMM DD, YYYY - hh:mm:ss'));
